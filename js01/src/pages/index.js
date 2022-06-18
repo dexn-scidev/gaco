@@ -10,6 +10,13 @@ const Page = styled.div`
 
 const Header = styled.header`
   height: 50px;
+  background: linear-gradient(to bottom, #003b9d, #003b9d 56%, #3782ff 56%);
+  display: flex;
+  justify-content: center;
+
+  & > img {
+    height: 100%;
+  }
 `;
 
 const Main = styled.main`
@@ -25,7 +32,12 @@ const Footer = styled.footer`
 const IndexPage = () => {
   return (
     <Page>
-      <Header>hoge</Header>
+      <Header>
+        <img
+          src="https://www.toei-anim.co.jp/tv/dejimon/picture/titlelogo.gif"
+          alt="logo"
+        />
+      </Header>
       <Main>hoge</Main>
       <Footer>hoge</Footer>
     </Page>
