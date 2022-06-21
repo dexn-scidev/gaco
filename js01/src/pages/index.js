@@ -23,10 +23,14 @@ const Main = styled.main`
   flex: 1;
   margin: 0 auto;
   width: 642px;
+  border-bottom: 1px solid #666;
 `;
 
 const Footer = styled.footer`
   height: 20px;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 `;
 
 const IndexPage = () => {
@@ -39,7 +43,7 @@ const IndexPage = () => {
         />
       </Header>
       <Main>hoge</Main>
-      <Footer>hoge</Footer>
+      <Footer>&copy;本郷あきよし・東映アニメーション</Footer>
     </Page>
   );
 };
