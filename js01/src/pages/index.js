@@ -1,50 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import "modern-css-reset";
 
-const Page = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Header = styled.header`
-  height: 50px;
-  background: linear-gradient(to bottom, #003b9d, #003b9d 56%, #3782ff 56%);
-  display: flex;
-  justify-content: center;
-
-  & > img {
-    height: 100%;
-  }
-`;
-
-const Main = styled.main`
-  flex: 1;
-  margin: 0 auto;
-  width: 642px;
-  border-bottom: 1px solid #666;
-`;
-
-const Footer = styled.footer`
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-`;
+import Layout from "../components/layout";
 
 const IndexPage = () => {
   return (
-    <Page>
-      <Header>
-        <img
-          src="https://www.toei-anim.co.jp/tv/dejimon/picture/titlelogo.gif"
-          alt="logo"
-        />
-      </Header>
-      <Main>hoge</Main>
-      <Footer>&copy;本郷あきよし・東映アニメーション</Footer>
-    </Page>
+    <Layout>
+      <section>
+        <div>
+          <div>
+            <img
+              src="https://www.toei-anim.co.jp/tv/dejimon/images/taichi.jpg"
+              alt="八神太一"
+            />
+          </div>
+          <div>
+            <dl>
+              <dt>八神太一役</dt>
+              <dd>藤田淑子 （ふじたとしこ）</dd>
+              <dt>所属</dt>
+              <dd>青二プロダクション</dd>
+              <dt>主な出演作品</dt>
+              <dd>
+                「地獄先生ぬ～べ～」（広）
+                <br />
+                「キテレツ大百科」（キテレツ）他
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div>
+          <p>
+            少年役ならもちろんこの方、アニメファンなら知らない人はいない大ベテランの藤田さんです。デジモンでも熱血漢で行動的な太一を見事に演じて下さっています。
+          </p>
+        </div>
+      </section>
+    </Layout>
   );
 };
 
