@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 
@@ -102,25 +103,33 @@ const ActorCard = ({
   );
 };
 
-const IndexPage = () => {
-  const actor = {
-    name: "藤田淑子",
-    kana: "ふじたとしこ",
-    charactor: "八神太一",
-    imagePath: "https://www.toei-anim.co.jp/tv/dejimon/images/taichi.jpg",
-    belonging: "青二プロダクション",
-    performances: [
-      "「地獄先生ぬ～べ～」（広）",
-      "「キテレツ大百科」（キテレツ）",
-    ],
-    desc: "少年役ならもちろんこの方、アニメファンなら知らない人はいない大ベテランの藤田さんです。デジモンでも熱血漢で行動的な太一を見事に演じて下さっています。",
-  };
+const IndexPage = ({ data }) => {
+  const actors = data.allActorsYaml.nodes;
 
   return (
     <Layout>
-      <ActorCard {...actor} />
+      {actors.map((actor) => (
+        <ActorCard key={actor.id} {...actor} />
+      ))}
     </Layout>
   );
 };
+
+export const query = graphql`
+  {
+    allActorsYaml {
+      nodes {
+        id
+        belonging
+        charactor
+        desc
+        imagePath
+        kana
+        name
+        performances
+      }
+    }
+  }
+`;
 
 export default IndexPage;
