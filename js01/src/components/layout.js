@@ -25,6 +25,7 @@ const Main = styled.main`
   flex: 1;
   margin: 0 auto;
   max-width: 642px;
+  width: 100%;
   border-bottom: 1px solid #666;
 `;
 
