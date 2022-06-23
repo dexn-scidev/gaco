@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "modern-css-reset";
 
 const Page = styled.div`
   height: 100vh;
