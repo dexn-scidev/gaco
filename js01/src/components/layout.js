@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import "modern-css-reset";
 import Logo from "../images/common/logo.gif";
+import BackTitle from "../images/common/back_title.gif";
 
 const Page = styled.div`
   margin: -8px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url("https://www.toei-anim.co.jp/tv/dejimon/picture/back_title.gif");
+  background-image: url(${BackTitle});
 `;
 
 const Header = styled.header`
