@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "modern-css-reset";
+import Logo from "../images/common/logo.gif";
 
 const Page = styled.div`
   margin: -8px;
@@ -40,10 +41,7 @@ const Layout = ({ children }) => {
   return (
     <Page>
       <Header>
-        <img
-          src="https://www.toei-anim.co.jp/tv/dejimon/picture/titlelogo.gif"
-          alt="logo"
-        />
+        <img src={Logo} alt="logo" />
       </Header>
       <Main>{children}</Main>
       <Footer>&copy;本郷あきよし・東映アニメーション</Footer>
