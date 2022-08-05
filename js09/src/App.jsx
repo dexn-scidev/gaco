@@ -1,12 +1,12 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useCallback, memo } from "react";
 
-const Input = ({ id, value, onChange }) => {
+const Input = memo(({ id, value, onChange }) => {
   useEffect(() => {
     console.log(value);
   });
 
   return <input type="text" value={value} onChange={onChange} />;
-};
+});
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -30,12 +30,13 @@ const defaultList = [
 function App() {
   const [list, dispatch] = useReducer(reducer, defaultList);
 
-  const handleChange = (id) => (e) => {
-    dispatch({
-      type: "REPLACE",
-      payload: { id, value: e.target.value },
-    });
-  };
+  const handleChange = (id) =>
+    useCallback((e) => {
+      dispatch({
+        type: "REPLACE",
+        payload: { id, value: e.target.value },
+      });
+    }, []);
 
   return (
     <ul>
