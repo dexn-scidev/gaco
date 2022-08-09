@@ -1,0 +1,14 @@
+.wrap {
+  height: 100vh;
+  display: flex;
+  align-items: end;
+}
+
+.box {
+  position: relative;
+}
+
+.inner {
+  position: absolute;
+  bottom: -100px;
+}
