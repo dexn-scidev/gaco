@@ -1,14 +1,12 @@
 module Mutations
   class CreateMemo < BaseMutation
-    # TODO: define return fields
-    # field :post, Types::PostType, null: false
+    field :memo, Types::MemoType, null: false
 
-    # TODO: define arguments
-    # argument :name, String, required: true
+    argument :content, String, required: true
 
-    # TODO: define resolve method
-    # def resolve(name:)
-    #   { post: ... }
-    # end
+    def resolve(**params)
+      memo = Memo.create!(params)
+      { memo: memo }
+    end
   end
 end
