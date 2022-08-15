@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect, memo } from "react";
 import CustomNumberInput from "./CustomNumberInput";
 
 export type Props = {
@@ -7,7 +7,7 @@ export type Props = {
   setValue: (value: string) => void;
 };
 
-const ProductList = ({ name, value, setValue }: Props) => {
+const ProductList = memo(({ name, value, setValue }: Props) => {
   return (
     <span
       style={{
@@ -27,6 +27,6 @@ const ProductList = ({ name, value, setValue }: Props) => {
       />
     </span>
   );
-};
+});
 
 export default ProductList;
