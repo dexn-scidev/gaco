@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import { faker } from "@faker-js/faker";
 import ProductList from "./ProductList";
 
@@ -52,9 +52,10 @@ const reducer = (items: Item[], action: Action): Item[] => {
 function App() {
   const [items, dispatch] = useReducer(reducer, defaultItems);
 
-  const setValue = (id: string) => (value: string) => {
-    dispatch(actions.replace(id, value));
-  };
+  const setValue = (id: string) =>
+    useCallback((value: string) => {
+      dispatch(actions.replace(id, value));
+    }, []);
 
   return (
     <ul>
