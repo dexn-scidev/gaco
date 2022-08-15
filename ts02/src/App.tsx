@@ -1,81 +1,74 @@
-import { HTMLProps, useRef, useState, ChangeEvent, RefObject } from "react";
+import { useCallback, useReducer } from "react";
+import { faker } from "@faker-js/faker";
+import ProductList from "./ProductList";
 
-type Props = {
-  min?: number;
-  max?: number;
-} & HTMLProps<HTMLInputElement>;
-
-const Input = ({
-  inputRef,
-  min,
-  max,
-  onChange,
-  ...props
-}: Props & { inputRef: RefObject<HTMLInputElement> }) => {
-  const validate = (value: string) => {
-    const n = Number(value);
-    if (isNaN(n)) return false;
-    if (min !== undefined && n < min) return false;
-    if (max !== undefined && n > max) return false;
-
-    return true;
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value === "") {
-      if (inputRef.current !== null) inputRef.current.value = "0";
-      if (onChange) onChange(e);
-    } else if (e.target.value === "0") {
-      if (onChange) onChange(e);
-    } else if (e.target.value.match(/^\-?\d+\.?\d*$/)) {
-      if (!validate(e.target.value)) return;
-
-      if (inputRef.current !== null) {
-        inputRef.current.value = e.target.value.replace(/^0+/, "");
-      }
-      if (onChange) onChange(e);
-    }
-  };
-
-  return (
-    <input type="text" ref={inputRef} onChange={handleChange} {...props} />
-  );
+type Item = {
+  id: string;
+  name: string;
+  value: string;
 };
 
-const CustomNumberInput = (props: Props) => {
-  const inputRef = useRef<HTMLInputElement & { _valueTracker: any }>(null);
+const range = (from: number, to: number): number[] => {
+  const r: number[] = [];
+  for (let i = from; i < to; i++) {
+    r.push(i);
+  }
+  return r;
+};
 
-  const changeValue = (update: (value: number) => number) => {
-    if (inputRef.current === null) return;
+const defaultItems: Item[] = range(0, 100).map((i) => ({
+  id: String(i),
+  name: faker.lorem.word(),
+  value: "0",
+}));
 
-    const currentValue = Number(inputRef.current.value);
-    if (isNaN(currentValue)) return;
+const ActionType = {
+  REAPLCE: "REPLACE",
+};
 
-    const nextValue = update(currentValue);
-    inputRef.current.value = String(nextValue);
-    inputRef.current._valueTracker.setValue("");
-    inputRef.current.dispatchEvent(new Event("change", { bubbles: true }));
-  };
+const actions = {
+  replace: (id: string, value: string) => ({
+    type: ActionType.REAPLCE as typeof ActionType.REAPLCE,
+    payload: { id, value },
+  }),
+};
 
-  return (
-    <span>
-      <button onClick={() => changeValue((x) => x - 1)}>-</button>
-      <Input inputRef={inputRef} {...props} />
-      <button onClick={() => changeValue((x) => x + 1)}>+</button>
-    </span>
-  );
+type Action = ReturnType<typeof actions.replace>;
+
+const reducer = (items: Item[], action: Action): Item[] => {
+  switch (action.type) {
+    case ActionType.REAPLCE:
+      return items.map((item) => {
+        if (item.id === action.payload.id)
+          return { ...item, value: action.payload.value };
+
+        return item;
+      });
+    default:
+      return items;
+  }
 };
 
 function App() {
-  const [value, setValue] = useState("0");
+  const [items, dispatch] = useReducer(reducer, defaultItems);
+
+  const setValue = (id: string) =>
+    useCallback((value: string) => {
+      dispatch(actions.replace(id, value));
+    }, []);
 
   return (
-    <CustomNumberInput
-      min={0}
-      max={999}
-      value={value}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
-    />
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          <ProductList
+            name={item.name}
+            value={item.value}
+            setValue={setValue(item.id)}
+          />
+        </li>
+      ))}
+    </ul>
   );
 }
 
