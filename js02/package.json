@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "esbuild main.js --outfile=bundle.js"
+    "build": "esbuild main.js --outfile=bundle.js --bundle"
   },
   "dependencies": {
     "esbuild": "^0.14.50"
