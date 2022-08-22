@@ -1,3 +1,12 @@
-const inc = (x) => x + 1;
+import express from "express";
 
-console.log(inc(10));
+const app = express();
+const port = 3000;
+
+app.get("/", (req, res) => {
+  res.send("hoge");
+});
+
+app.listen(port, () => {
+  console.log("fuga");
+});
