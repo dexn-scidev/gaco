@@ -11,5 +11,9 @@
     "express": "^4.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "esbuild-plugin-svg": "^0.1.0",
+    "esbuild-plugin-svgr": "^1.0.1"
   }
 }
