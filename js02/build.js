@@ -1,4 +1,5 @@
 const { build } = require("esbuild");
+const svg = require("esbuild-plugin-svgr");
 const path = require("path");
 
 build({
@@ -6,4 +7,5 @@ build({
   bundle: true,
   outfile: path.resolve(__dirname, "public/bundle.js"),
   platform: "node",
+  plugins: [svg()],
 }).catch(() => process.exit(1));
