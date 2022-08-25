@@ -4,6 +4,9 @@
     "start": "node public/bundle.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.10.2",
     "esbuild": "^0.14.50",
     "express": "^4.18.1",
     "react": "^18.2.0",
