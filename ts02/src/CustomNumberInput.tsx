@@ -1,4 +1,7 @@
+import { Box, IconButton, TextField } from "@mui/material";
 import { HTMLProps, useRef, ChangeEvent, RefObject } from "react";
+import Add from "./Add";
+import Remove from "./Remove";
 
 export type Props = {
   min?: number;
@@ -38,7 +41,19 @@ const Input = ({
   };
 
   return (
-    <input type="text" ref={inputRef} onChange={handleChange} {...props} />
+    <TextField
+      type="text"
+      variant="standard"
+      fullWidth
+      margin="dense"
+      inputProps={{
+        inputMode: "decimal",
+        style: { textAlign: "right" },
+        ...props,
+      }}
+      inputRef={inputRef}
+      onChange={handleChange}
+    />
   );
 };
 
@@ -58,11 +73,15 @@ const CustomNumberInput = (props: Props) => {
   };
 
   return (
-    <span>
-      <button onClick={() => changeValue((x) => x - 1)}>-</button>
-      <Input inputRef={inputRef} {...props} />
-      <button onClick={() => changeValue((x) => x + 1)}>+</button>
-    </span>
+    <Box display="flex" minWidth={160} width={160} height={60}>
+      <IconButton onClick={() => changeValue((x) => x - 1)}>
+        <Remove fontSize="large" />
+      </IconButton>
+      <Input inputRef={inputRef} required {...props} />
+      <IconButton onClick={() => changeValue((x) => x + 1)}>
+        <Add fontSize="large" />
+      </IconButton>
+    </Box>
   );
 };
 
