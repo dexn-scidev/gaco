@@ -1,6 +1,10 @@
 import React from "react";
 
-const Layout = ({ children }) => {
+export type Props = {
+  children: React.ReactNode;
+};
+
+const Layout: React.VFC<Props> = ({ children }) => {
   return (
     <html>
       <head>
