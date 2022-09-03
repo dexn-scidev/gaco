@@ -3,7 +3,8 @@
     "clean": "rimraf public/",
     "dev": "npm-run-all clean build start",
     "build": "node build.js",
-    "start": "node public/bundle.js"
+    "start": "node public/bundle.js",
+    "check": "tsc"
   },
   "dependencies": {
     "esbuild": "^0.14.50",
