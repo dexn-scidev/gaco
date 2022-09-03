@@ -1,4 +1,5 @@
 import { HTMLProps, useRef, useState, ChangeEvent, RefObject } from "react";
+import { CssBaseline } from "@mui/material";
 
 type Props = {
   min?: number;
@@ -70,12 +71,17 @@ function App() {
   const [value, setValue] = useState("0");
 
   return (
-    <CustomNumberInput
-      min={0}
-      max={999}
-      value={value}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
-    />
+    <>
+      <CssBaseline />
+      <CustomNumberInput
+        min={0}
+        max={999}
+        value={value}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setValue(e.target.value)
+        }
+      />
+    </>
   );
 }
 
